@@ -6,6 +6,7 @@ namespace Countdown
         {
             InitializeComponent();
         }
+        private Color color;
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -36,8 +37,24 @@ namespace Countdown
             }
             else
             {
-                Environment.SetEnvironmentVariable("CountdownClock", date.ToFileTime().ToString(), EnvironmentVariableTarget.User);
-                Environment.Exit(1);
+                try
+                {
+                    StreamWriter writer = new StreamWriter(Environment.GetEnvironmentVariable("appdata") + "\\Countdown\\.countdownrc");
+                    writer.WriteLine("countdown-timestamp=" + date.ToFileTime());
+                    writer.WriteLine("window-color=" + color.ToArgb().ToString());
+                    writer.WriteLine("action=" + HitsZeroAction.SelectedIndex.ToString());
+                    writer.WriteLine("run-on-startup=" + DoRunAtStart.Checked.ToString());
+                    writer.WriteLine("always-on-top=" + DoAlwaysOnTop.Checked.ToString());
+                    writer.WriteLine(Subtitle.Text);
+                    writer.Dispose();
+                    writer.Close();
+                } catch (Exception ex)
+                {
+                    MessageBox.Show("Could not save the settings.\n" + ex, "Error while saving", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                } finally
+                {
+                    Environment.Exit(1);
+                }
             }
         }
 
@@ -45,6 +62,15 @@ namespace Countdown
         {
             Form2 form = new Form2();
             form.ShowDialog();
+        }
+
+        private void SetColorButton_Click(object sender, EventArgs e)
+        {
+            ColorDialog dialog = new ColorDialog();
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                color = dialog.Color;
+            }
         }
     }
 }

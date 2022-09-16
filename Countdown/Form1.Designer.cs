@@ -1,4 +1,6 @@
-﻿namespace Countdown
+﻿#pragma warning disable CS0108
+
+namespace Countdown
 {
     partial class Form1
     {
@@ -28,10 +30,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.DayInput = new System.Windows.Forms.DateTimePicker();
             this.AtLabel = new System.Windows.Forms.Label();
-            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.HourInput = new System.Windows.Forms.NumericUpDown();
             this.MinuteInput = new System.Windows.Forms.NumericUpDown();
             this.SecondInput = new System.Windows.Forms.NumericUpDown();
@@ -47,6 +47,9 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.HitsZeroAction = new System.Windows.Forms.ComboBox();
             this.HitsZeroLabel = new System.Windows.Forms.Label();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.DoRunAtStart = new System.Windows.Forms.CheckBox();
+            this.DoAlwaysOnTop = new System.Windows.Forms.CheckBox();
             this.SaveButton = new System.Windows.Forms.Button();
             this.CancelButton = new System.Windows.Forms.Button();
             this.AboutButton = new System.Windows.Forms.Button();
@@ -57,6 +60,7 @@
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // DayInput
@@ -76,11 +80,6 @@
             this.AtLabel.Size = new System.Drawing.Size(17, 15);
             this.AtLabel.TabIndex = 1;
             this.AtLabel.Text = "at";
-            // 
-            // notifyIcon1
-            // 
-            this.notifyIcon1.Text = "notifyIcon1";
-            this.notifyIcon1.Visible = true;
             // 
             // HourInput
             // 
@@ -143,6 +142,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Location = new System.Drawing.Point(5, 5);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -205,6 +205,7 @@
             this.SetColorButton.TabIndex = 2;
             this.SetColorButton.Text = "Select...";
             this.SetColorButton.UseVisualStyleBackColor = true;
+            this.SetColorButton.Click += new System.EventHandler(this.SetColorButton_Click);
             // 
             // ColorLabel
             // 
@@ -251,6 +252,44 @@
             this.HitsZeroLabel.Size = new System.Drawing.Size(136, 15);
             this.HitsZeroLabel.TabIndex = 0;
             this.HitsZeroLabel.Text = "When countdown hits 0:";
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.DoRunAtStart);
+            this.tabPage4.Controls.Add(this.DoAlwaysOnTop);
+            this.tabPage4.Location = new System.Drawing.Point(4, 24);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(225, 78);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "System";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // DoRunAtStart
+            // 
+            this.DoRunAtStart.AutoSize = true;
+            this.DoRunAtStart.Checked = true;
+            this.DoRunAtStart.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.DoRunAtStart.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.DoRunAtStart.Location = new System.Drawing.Point(12, 46);
+            this.DoRunAtStart.Name = "DoRunAtStart";
+            this.DoRunAtStart.Size = new System.Drawing.Size(128, 20);
+            this.DoRunAtStart.TabIndex = 1;
+            this.DoRunAtStart.Text = "Launch on startup";
+            this.DoRunAtStart.UseVisualStyleBackColor = true;
+            // 
+            // DoAlwaysOnTop
+            // 
+            this.DoAlwaysOnTop.AutoSize = true;
+            this.DoAlwaysOnTop.Checked = true;
+            this.DoAlwaysOnTop.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.DoAlwaysOnTop.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.DoAlwaysOnTop.Location = new System.Drawing.Point(12, 15);
+            this.DoAlwaysOnTop.Name = "DoAlwaysOnTop";
+            this.DoAlwaysOnTop.Size = new System.Drawing.Size(210, 20);
+            this.DoAlwaysOnTop.TabIndex = 0;
+            this.DoAlwaysOnTop.Text = "Display countdown always on top";
+            this.DoAlwaysOnTop.UseVisualStyleBackColor = true;
             // 
             // SaveButton
             // 
@@ -310,6 +349,8 @@
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -318,7 +359,6 @@
 
         private DateTimePicker DayInput;
         private Label AtLabel;
-        private NotifyIcon notifyIcon1;
         private NumericUpDown HourInput;
         private NumericUpDown MinuteInput;
         private NumericUpDown SecondInput;
@@ -337,5 +377,8 @@
         private Button SaveButton;
         private Button CancelButton;
         private Button AboutButton;
+        private TabPage tabPage4;
+        private CheckBox DoRunAtStart;
+        private CheckBox DoAlwaysOnTop;
     }
 }

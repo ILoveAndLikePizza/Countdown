@@ -16,5 +16,25 @@ namespace Countdown
         {
             InitializeComponent();
         }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+            VersionLabel.Text += ProductVersion;
+        }
+
+        private void WebsiteButton_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("cmd.exe", "/c start https://nm-games.eu");
+        }
+
+        private void GithubButton_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("cmd.exe", "/c start https://github.com/ILoveAndLikePizza/Countdown");
+        }
+
+        private void DiscordButton_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("cmd.exe", "/c start https://discord.gg/CaMaGRXDqB");
+        }
     }
 }
