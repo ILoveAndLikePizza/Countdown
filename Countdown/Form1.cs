@@ -1,3 +1,5 @@
+using Microsoft.Win32;
+
 namespace Countdown
 {
     public partial class Form1 : Form
@@ -17,6 +19,8 @@ namespace Countdown
             SecondInput.Value = now.Second;
 
             HitsZeroAction.SelectedIndex = 0;
+            if (!Directory.Exists(Environment.GetEnvironmentVariable("appdata") + "\\Countdown")) Directory.CreateDirectory(Environment.GetEnvironmentVariable("appdata") + "\\Countdown");
+            if (!File.Exists(Environment.GetEnvironmentVariable("appdata") + "\\Countdown\\.countdownrc")) File.Create(Environment.GetEnvironmentVariable("appdata") + "\\Countdown\\.countdownrc");
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
@@ -43,7 +47,6 @@ namespace Countdown
                     writer.WriteLine("countdown-timestamp=" + date.ToFileTime());
                     writer.WriteLine("window-color=" + color.ToArgb().ToString());
                     writer.WriteLine("action=" + HitsZeroAction.SelectedIndex.ToString());
-                    writer.WriteLine("run-on-startup=" + DoRunAtStart.Checked.ToString());
                     writer.WriteLine("always-on-top=" + DoAlwaysOnTop.Checked.ToString());
                     writer.WriteLine(Subtitle.Text);
                     writer.Dispose();
