@@ -34,39 +34,37 @@
             // 
             // CountdownLabel
             // 
-            this.CountdownLabel.AutoSize = true;
             this.CountdownLabel.Font = new System.Drawing.Font("Segoe UI", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CountdownLabel.Location = new System.Drawing.Point(90, 30);
+            this.CountdownLabel.Location = new System.Drawing.Point(12, 9);
             this.CountdownLabel.Name = "CountdownLabel";
-            this.CountdownLabel.Size = new System.Drawing.Size(547, 159);
+            this.CountdownLabel.Size = new System.Drawing.Size(487, 114);
             this.CountdownLabel.TabIndex = 0;
             this.CountdownLabel.Text = "13:37:00";
+            this.CountdownLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // SubtitleLabel
             // 
-            this.SubtitleLabel.AutoSize = true;
             this.SubtitleLabel.Font = new System.Drawing.Font("Segoe UI", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.SubtitleLabel.Location = new System.Drawing.Point(226, 203);
+            this.SubtitleLabel.Location = new System.Drawing.Point(12, 145);
             this.SubtitleLabel.Name = "SubtitleLabel";
-            this.SubtitleLabel.Size = new System.Drawing.Size(278, 62);
+            this.SubtitleLabel.Size = new System.Drawing.Size(487, 112);
             this.SubtitleLabel.TabIndex = 1;
             this.SubtitleLabel.Text = "Bottom Text";
+            this.SubtitleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Form3
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(723, 355);
+            this.ClientSize = new System.Drawing.Size(511, 266);
             this.Controls.Add(this.SubtitleLabel);
             this.Controls.Add(this.CountdownLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form3";
             this.Text = "Form3";
             this.Load += new System.EventHandler(this.Form3_Load);
             this.DoubleClick += new System.EventHandler(this.Form3_DoubleClick);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

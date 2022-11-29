@@ -30,6 +30,7 @@ namespace Countdown
                     StreamReader reader = new StreamReader(Environment.GetEnvironmentVariable("appdata") + "\\Countdown\\.countdownrc");
                     DateTime countdownTimestamp = DateTime.FromFileTime(long.Parse(reader.ReadLine().Split('=')[1]));
                     Color windowColor = Color.FromArgb(int.Parse(reader.ReadLine().Split('=')[1]));
+                    string textColor = reader.ReadLine().Split('=')[1];
                     int action = int.Parse(reader.ReadLine().Split('=')[1]);
                     bool alwaysOnTop = bool.Parse(reader.ReadLine().Split('=')[1]);
                     string subtitle = reader.ReadLine();
@@ -41,10 +42,12 @@ namespace Countdown
                     HitsZeroAction.SelectedIndex = action;
                     DoAlwaysOnTop.Checked = alwaysOnTop;
                     Subtitle.Text = subtitle;
+                    if (textColor == "black") BlackTextColor.Checked = true; else WhiteTextColor.Checked = true;
 
-                } catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Could not load the settings.\n" + ex, "Error while loading", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Could not load the settings.\n" + ex.Message, "Error while loading", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
             }
@@ -57,7 +60,7 @@ namespace Countdown
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
-            Environment.Exit(0);
+            Close();
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
@@ -78,17 +81,22 @@ namespace Countdown
                     StreamWriter writer = new StreamWriter(Environment.GetEnvironmentVariable("appdata") + "\\Countdown\\.countdownrc");
                     writer.WriteLine("countdown-timestamp=" + date.ToFileTime());
                     writer.WriteLine("window-color=" + color.ToArgb().ToString());
+                    writer.WriteLine("text-color=" + (BlackTextColor.Checked ? "black":"white"));
                     writer.WriteLine("action=" + HitsZeroAction.SelectedIndex.ToString());
                     writer.WriteLine("always-on-top=" + DoAlwaysOnTop.Checked.ToString());
                     writer.WriteLine(Subtitle.Text);
                     writer.Dispose();
                     writer.Close();
-                } catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Could not save the settings.\n" + ex, "Error while saving", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                } finally
+                    MessageBox.Show("Could not save the settings.\n" + ex.Message, "Error while saving", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
                 {
-                    Environment.Exit(1);
+                    MessageBox.Show(Environment.CurrentDirectory, Environment.ProcessPath);
+                    if (MessageBox.Show("Countdown requires a restart in order to apply them.\nWould you like to restart now?", "Settings saved", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) Environment.Exit(1);
+                    else Close();
                 }
             }
         }

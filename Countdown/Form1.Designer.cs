@@ -40,18 +40,21 @@ namespace Countdown
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.Subtitle = new System.Windows.Forms.TextBox();
-            this.SubtitleLabel = new System.Windows.Forms.Label();
             this.SetColorButton = new System.Windows.Forms.Button();
-            this.ColorLabel = new System.Windows.Forms.Label();
+            this.BackColorLabel = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.HitsZeroAction = new System.Windows.Forms.ComboBox();
             this.HitsZeroLabel = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.Subtitle = new System.Windows.Forms.TextBox();
+            this.SubtitleLabel = new System.Windows.Forms.Label();
             this.DoAlwaysOnTop = new System.Windows.Forms.CheckBox();
             this.SaveButton = new System.Windows.Forms.Button();
             this.CancelButton = new System.Windows.Forms.Button();
             this.AboutButton = new System.Windows.Forms.Button();
+            this.ForeColorLabel = new System.Windows.Forms.Label();
+            this.BlackTextColor = new System.Windows.Forms.RadioButton();
+            this.WhiteTextColor = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.HourInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MinuteInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SecondInput)).BeginInit();
@@ -167,33 +170,18 @@ namespace Countdown
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.Subtitle);
-            this.tabPage2.Controls.Add(this.SubtitleLabel);
+            this.tabPage2.Controls.Add(this.WhiteTextColor);
+            this.tabPage2.Controls.Add(this.BlackTextColor);
+            this.tabPage2.Controls.Add(this.ForeColorLabel);
             this.tabPage2.Controls.Add(this.SetColorButton);
-            this.tabPage2.Controls.Add(this.ColorLabel);
+            this.tabPage2.Controls.Add(this.BackColorLabel);
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(225, 78);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Window";
+            this.tabPage2.Text = "Colors";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // Subtitle
-            // 
-            this.Subtitle.Location = new System.Drawing.Point(73, 43);
-            this.Subtitle.Name = "Subtitle";
-            this.Subtitle.Size = new System.Drawing.Size(136, 23);
-            this.Subtitle.TabIndex = 4;
-            // 
-            // SubtitleLabel
-            // 
-            this.SubtitleLabel.AutoSize = true;
-            this.SubtitleLabel.Location = new System.Drawing.Point(6, 46);
-            this.SubtitleLabel.Name = "SubtitleLabel";
-            this.SubtitleLabel.Size = new System.Drawing.Size(50, 15);
-            this.SubtitleLabel.TabIndex = 3;
-            this.SubtitleLabel.Text = "Subtitle:";
             // 
             // SetColorButton
             // 
@@ -206,14 +194,14 @@ namespace Countdown
             this.SetColorButton.UseVisualStyleBackColor = true;
             this.SetColorButton.Click += new System.EventHandler(this.SetColorButton_Click);
             // 
-            // ColorLabel
+            // BackColorLabel
             // 
-            this.ColorLabel.AutoSize = true;
-            this.ColorLabel.Location = new System.Drawing.Point(6, 13);
-            this.ColorLabel.Name = "ColorLabel";
-            this.ColorLabel.Size = new System.Drawing.Size(84, 15);
-            this.ColorLabel.TabIndex = 1;
-            this.ColorLabel.Text = "Window color:";
+            this.BackColorLabel.AutoSize = true;
+            this.BackColorLabel.Location = new System.Drawing.Point(6, 13);
+            this.BackColorLabel.Name = "BackColorLabel";
+            this.BackColorLabel.Size = new System.Drawing.Size(84, 15);
+            this.BackColorLabel.TabIndex = 1;
+            this.BackColorLabel.Text = "Window color:";
             // 
             // tabPage3
             // 
@@ -254,14 +242,32 @@ namespace Countdown
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.Subtitle);
+            this.tabPage4.Controls.Add(this.SubtitleLabel);
             this.tabPage4.Controls.Add(this.DoAlwaysOnTop);
             this.tabPage4.Location = new System.Drawing.Point(4, 24);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage4.Size = new System.Drawing.Size(225, 78);
             this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "System";
+            this.tabPage4.Text = "Other";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // Subtitle
+            // 
+            this.Subtitle.Location = new System.Drawing.Point(76, 13);
+            this.Subtitle.Name = "Subtitle";
+            this.Subtitle.Size = new System.Drawing.Size(136, 23);
+            this.Subtitle.TabIndex = 6;
+            // 
+            // SubtitleLabel
+            // 
+            this.SubtitleLabel.AutoSize = true;
+            this.SubtitleLabel.Location = new System.Drawing.Point(9, 16);
+            this.SubtitleLabel.Name = "SubtitleLabel";
+            this.SubtitleLabel.Size = new System.Drawing.Size(50, 15);
+            this.SubtitleLabel.TabIndex = 5;
+            this.SubtitleLabel.Text = "Subtitle:";
             // 
             // DoAlwaysOnTop
             // 
@@ -269,7 +275,7 @@ namespace Countdown
             this.DoAlwaysOnTop.Checked = true;
             this.DoAlwaysOnTop.CheckState = System.Windows.Forms.CheckState.Checked;
             this.DoAlwaysOnTop.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.DoAlwaysOnTop.Location = new System.Drawing.Point(9, 30);
+            this.DoAlwaysOnTop.Location = new System.Drawing.Point(13, 47);
             this.DoAlwaysOnTop.Name = "DoAlwaysOnTop";
             this.DoAlwaysOnTop.Size = new System.Drawing.Size(210, 20);
             this.DoAlwaysOnTop.TabIndex = 0;
@@ -308,6 +314,36 @@ namespace Countdown
             this.AboutButton.Text = "About...";
             this.AboutButton.UseVisualStyleBackColor = true;
             this.AboutButton.Click += new System.EventHandler(this.AboutButton_Click);
+            // 
+            // ForeColorLabel
+            // 
+            this.ForeColorLabel.AutoSize = true;
+            this.ForeColorLabel.Location = new System.Drawing.Point(6, 49);
+            this.ForeColorLabel.Name = "ForeColorLabel";
+            this.ForeColorLabel.Size = new System.Drawing.Size(61, 15);
+            this.ForeColorLabel.TabIndex = 3;
+            this.ForeColorLabel.Text = "Text color:";
+            // 
+            // BlackTextColor
+            // 
+            this.BlackTextColor.AutoSize = true;
+            this.BlackTextColor.Checked = true;
+            this.BlackTextColor.Location = new System.Drawing.Point(92, 47);
+            this.BlackTextColor.Name = "BlackTextColor";
+            this.BlackTextColor.Size = new System.Drawing.Size(53, 19);
+            this.BlackTextColor.TabIndex = 4;
+            this.BlackTextColor.Text = "Black";
+            this.BlackTextColor.UseVisualStyleBackColor = true;
+            // 
+            // WhiteTextColor
+            // 
+            this.WhiteTextColor.AutoSize = true;
+            this.WhiteTextColor.Location = new System.Drawing.Point(156, 47);
+            this.WhiteTextColor.Name = "WhiteTextColor";
+            this.WhiteTextColor.Size = new System.Drawing.Size(56, 19);
+            this.WhiteTextColor.TabIndex = 5;
+            this.WhiteTextColor.Text = "White";
+            this.WhiteTextColor.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -352,10 +388,8 @@ namespace Countdown
         private TabControl tabControl1;
         private TabPage tabPage1;
         private TabPage tabPage2;
-        private TextBox Subtitle;
-        private Label SubtitleLabel;
         private Button SetColorButton;
-        private Label ColorLabel;
+        private Label BackColorLabel;
         private TabPage tabPage3;
         private ComboBox HitsZeroAction;
         private Label HitsZeroLabel;
@@ -363,7 +397,11 @@ namespace Countdown
         private Button CancelButton;
         private Button AboutButton;
         private TabPage tabPage4;
-        private CheckBox DoRunAtStart;
         private CheckBox DoAlwaysOnTop;
+        private TextBox Subtitle;
+        private Label SubtitleLabel;
+        private Label ForeColorLabel;
+        private RadioButton WhiteTextColor;
+        private RadioButton BlackTextColor;
     }
 }
