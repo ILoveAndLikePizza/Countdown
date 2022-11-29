@@ -48,7 +48,6 @@ namespace Countdown
             this.HitsZeroAction = new System.Windows.Forms.ComboBox();
             this.HitsZeroLabel = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.DoRunAtStart = new System.Windows.Forms.CheckBox();
             this.DoAlwaysOnTop = new System.Windows.Forms.CheckBox();
             this.SaveButton = new System.Windows.Forms.Button();
             this.CancelButton = new System.Windows.Forms.Button();
@@ -255,7 +254,6 @@ namespace Countdown
             // 
             // tabPage4
             // 
-            this.tabPage4.Controls.Add(this.DoRunAtStart);
             this.tabPage4.Controls.Add(this.DoAlwaysOnTop);
             this.tabPage4.Location = new System.Drawing.Point(4, 24);
             this.tabPage4.Name = "tabPage4";
@@ -265,26 +263,13 @@ namespace Countdown
             this.tabPage4.Text = "System";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // DoRunAtStart
-            // 
-            this.DoRunAtStart.AutoSize = true;
-            this.DoRunAtStart.Checked = true;
-            this.DoRunAtStart.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.DoRunAtStart.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.DoRunAtStart.Location = new System.Drawing.Point(12, 46);
-            this.DoRunAtStart.Name = "DoRunAtStart";
-            this.DoRunAtStart.Size = new System.Drawing.Size(128, 20);
-            this.DoRunAtStart.TabIndex = 1;
-            this.DoRunAtStart.Text = "Launch on startup";
-            this.DoRunAtStart.UseVisualStyleBackColor = true;
-            // 
             // DoAlwaysOnTop
             // 
             this.DoAlwaysOnTop.AutoSize = true;
             this.DoAlwaysOnTop.Checked = true;
             this.DoAlwaysOnTop.CheckState = System.Windows.Forms.CheckState.Checked;
             this.DoAlwaysOnTop.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.DoAlwaysOnTop.Location = new System.Drawing.Point(12, 15);
+            this.DoAlwaysOnTop.Location = new System.Drawing.Point(9, 30);
             this.DoAlwaysOnTop.Name = "DoAlwaysOnTop";
             this.DoAlwaysOnTop.Size = new System.Drawing.Size(210, 20);
             this.DoAlwaysOnTop.TabIndex = 0;

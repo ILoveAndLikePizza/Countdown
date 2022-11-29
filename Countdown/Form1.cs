@@ -1,5 +1,8 @@
 using Microsoft.Win32;
 
+#pragma warning disable CS8600
+#pragma warning disable CS8602
+
 namespace Countdown
 {
     public partial class Form1 : Form
@@ -20,7 +23,36 @@ namespace Countdown
 
             HitsZeroAction.SelectedIndex = 0;
             if (!Directory.Exists(Environment.GetEnvironmentVariable("appdata") + "\\Countdown")) Directory.CreateDirectory(Environment.GetEnvironmentVariable("appdata") + "\\Countdown");
-            if (!File.Exists(Environment.GetEnvironmentVariable("appdata") + "\\Countdown\\.countdownrc")) File.Create(Environment.GetEnvironmentVariable("appdata") + "\\Countdown\\.countdownrc");
+            if (File.Exists(Environment.GetEnvironmentVariable("appdata") + "\\Countdown\\.countdownrc"))
+            {
+                try
+                {
+                    StreamReader reader = new StreamReader(Environment.GetEnvironmentVariable("appdata") + "\\Countdown\\.countdownrc");
+                    DateTime countdownTimestamp = DateTime.FromFileTime(long.Parse(reader.ReadLine().Split('=')[1]));
+                    Color windowColor = Color.FromArgb(int.Parse(reader.ReadLine().Split('=')[1]));
+                    int action = int.Parse(reader.ReadLine().Split('=')[1]);
+                    bool alwaysOnTop = bool.Parse(reader.ReadLine().Split('=')[1]);
+                    string subtitle = reader.ReadLine();
+                    reader.Close();
+                    DayInput.Value = countdownTimestamp;
+                    HourInput.Value = countdownTimestamp.Hour;
+                    MinuteInput.Value = countdownTimestamp.Minute;
+                    SecondInput.Value = countdownTimestamp.Second;
+                    HitsZeroAction.SelectedIndex = action;
+                    DoAlwaysOnTop.Checked = alwaysOnTop;
+                    Subtitle.Text = subtitle;
+
+                } catch (Exception ex)
+                {
+                    MessageBox.Show("Could not load the settings.\n" + ex, "Error while loading", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
+            else
+            {
+                FileStream rc = File.Create(Environment.GetEnvironmentVariable("appdata") + "\\Countdown\\.countdownrc");
+                rc.Close();
+            }
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

@@ -11,6 +11,7 @@ using System.Windows.Forms;
 #pragma warning disable CS8618
 #pragma warning disable CS8600
 #pragma warning disable CS8602
+#pragma warning disable CS8622
 
 namespace Countdown
 {
@@ -49,15 +50,17 @@ namespace Countdown
                     }
                 }
                 reader.Close();
-                BackColor = backgroundColor;
+                if (backgroundColor.A == 1) BackColor = backgroundColor;
                 TopMost = alwaysOnTop;
-                CountdownLabel.Text = countdownTimestamp.ToString();
-                SubtitleLabel.Text = subtitle;
-               
+                System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
+                timer.Interval = 1000;
+                timer.Tick += new EventHandler(UpdateClock);
+                timer.Start();
             } else
             {
-                MessageBox.Show("You haven't set any configurations, please set them first!", "No configurations", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                File.Create(Environment.GetEnvironmentVariable("appdata") + "\\Countdown\\.countdownrc");
+                MessageBox.Show("You haven't set any configurations, please set them first!", "No configurations found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                FileStream rc = File.Create(Environment.GetEnvironmentVariable("appdata") + "\\Countdown\\.countdownrc");
+                rc.Close();
                 Form1 form = new Form1();
                 form.Show();
                 
@@ -67,6 +70,18 @@ namespace Countdown
         {
             Form1 form = new Form1();
             form.Show();
+        }
+
+        private void UpdateClock(object sender, EventArgs e)
+        {
+            string hours = ("0" + (DateTime.Now.Hour - countdownTimestamp.Hour));
+            string minutes = ("0" + (DateTime.Now.Minute - countdownTimestamp.Minute));
+            string seconds = ("0" + (DateTime.Now.Second - countdownTimestamp.Second));
+            //hours = hours[hours.Length - 2] + hours[hours.Length - 1] + "";
+            //minutes = minutes[minutes.Length - 2] + minutes[minutes.Length - 1] + "";
+            //seconds = seconds[seconds.Length - 2] + seconds[seconds.Length - 1] + "";
+            CountdownLabel.Text = hours + ":" + minutes + ":" + seconds;
+            SubtitleLabel.Text = subtitle;
         }
     }
 }
